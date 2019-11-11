@@ -10,7 +10,7 @@ require (
 	github.com/golang/protobuf v1.3.2
 	github.com/sirupsen/logrus v1.4.2
 	github.com/urfave/cli/v2 v2.0.0-alpha.2
-	github.com/xtaci/kcp-go v5.4.19+incompatible // indirect
+	github.com/xtaci/kcp-go v5.4.19+incompatible
 	go.etcd.io/etcd v3.3.17+incompatible
 	go.uber.org/multierr v1.4.0 // indirect
 	go.uber.org/zap v1.12.0 // indirect
