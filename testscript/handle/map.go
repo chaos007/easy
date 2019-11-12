@@ -3,8 +3,8 @@ package handle
 import (
 	"fmt"
 
-	"github.com/chaos007/easycome/msgmeta"
 	"github.com/chaos007/easy/testscript/player"
+	"github.com/chaos007/easycome/msgmeta"
 
 	"github.com/golang/protobuf/proto"
 )
@@ -34,6 +34,5 @@ func Handler(msgID int32, data []byte, p *player.Player) (ret proto.Message) {
 var handler = map[string]func(proto.Message, *player.Player) proto.Message{
 	"pb.DownPing":         DownPing,
 	"pb.DownPlayerAction": DownPlayerAction,
-	"pb.EmptyGameFrame":   EmptyGameFrame,
 	"pb.GameFrame":        GameFrame,
 }

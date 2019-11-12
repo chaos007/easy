@@ -4,10 +4,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/chaos007/easy/unique/handler"
 	"github.com/chaos007/easycome/config"
 	"github.com/chaos007/easycome/etcdservices"
 	"github.com/chaos007/easycome/session/grpc"
-	"github.com/chaos007/easy/unique/handler"
 
 	"net/http"
 	"os"
@@ -39,12 +39,12 @@ func main() {
 			},
 			&cli.StringFlag{
 				Name:  "etcd-service-path",
-				Value: "/backends/login/",
+				Value: "/backends/unique/",
 				Usage: "etcd service path",
 			},
 			&cli.StringFlag{
 				Name:  "server-type",
-				Value: "login",
+				Value: "unique",
 				Usage: "type of this service",
 			},
 			&cli.StringSliceFlag{

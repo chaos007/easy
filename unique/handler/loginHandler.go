@@ -97,37 +97,38 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if s.MachineCode == "" {
-		for {
-			s.MachineCode = utils.GetRandomString(16)
-			check1 := &account.Account{}
-			if has, err := mysql.GetEngine().Where("machine_code = ?", s.MachineCode).Get(check1); err != nil {
-				logrus.Debugln("RegisterHandler err:")
-			} else if !has {
-				break
-			}
-		}
+		s.MachineCode = utils.GetRandomString(16)
+		// for {
+		// 	s.MachineCode = utils.GetRandomString(16)
+		// 	check1 := &account.Account{}
+		// 	if has, err := mysql.GetEngine().Where("machine_code = ?", s.MachineCode).Get(check1); err != nil {
+		// 		logrus.Debugln("RegisterHandler err:")
+		// 	} else if !has {
+		// 		break
+		// 	}
+		// }
 	}
 
-	check := &account.Account{}
-	if has, err := mysql.GetEngine().Where("machine_code = ?", s.MachineCode).Get(check); err != nil {
-		logrus.Debugln("get same machine code err")
-	} else if has {
-		down, err := getAllGroupBalanceAgent(check.UID)
-		if err != nil || down == nil {
-			logrus.Errorln("LoginHandler getAllGroupBalanceAgent err:", err)
-			web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
-			return
-		}
-		result := &pb.WebDownRegister{
-			UserID:      check.UID,
-			Password:    check.Password,
-			Info:        down.Info,
-			Cookie:      check.Cookie,
-			MachineCode: s.MachineCode,
-		}
-		web.HTTPReturnWrite(w, &web.JSONRet{Code: 0, Msg: "成功", Data: result})
-		return
-	}
+	// check := &account.Account{}
+	// if has, err := mysql.GetEngine().Where("machine_code = ?", s.MachineCode).Get(check); err != nil {
+	// 	logrus.Debugln("get same machine code err")
+	// } else if has {
+	// 	down, err := getAllGroupBalanceAgent(check.UID)
+	// 	if err != nil || down == nil {
+	// 		logrus.Errorln("LoginHandler getAllGroupBalanceAgent err:", err)
+	// 		web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
+	// 		return
+	// 	}
+	// 	result := &pb.WebDownRegister{
+	// 		UserID:      check.UID,
+	// 		Password:    check.Password,
+	// 		Info:        down.Info,
+	// 		Cookie:      check.Cookie,
+	// 		MachineCode: s.MachineCode,
+	// 	}
+	// 	web.HTTPReturnWrite(w, &web.JSONRet{Code: 0, Msg: "成功", Data: result})
+	// 	return
+	// }
 	password := utils.GetRandomString(6)
 	a := &account.Account{
 		Password:    password,
@@ -136,25 +137,25 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		UserName:    utils.GetRandomString(8),
 		MachineCode: s.MachineCode,
 	}
-	if _, err := mysql.GetEngine().Insert(a); err != nil {
-		web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
-		return
-	}
-	a.UID = strconv.FormatInt(a.ID+20000, 10)
-	if _, err := mysql.GetEngine().Where("id = ?", a.ID).Cols("uid").Update(a); err != nil {
-		web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
-		return
-	}
-	p := &player.Player{
-		UID:      a.UID,
-		IconID:   1001,
-		NickName: a.UserName,
-		Gold:     10000,
-	}
-	if _, err := mysql.GetEngine().Insert(p); err != nil {
-		web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
-		return
-	}
+	// if _, err := mysql.GetEngine().Insert(a); err != nil {
+	// 	web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
+	// 	return
+	// }
+	// a.UID = strconv.FormatInt(a.ID+20000, 10)
+	// if _, err := mysql.GetEngine().Where("id = ?", a.ID).Cols("uid").Update(a); err != nil {
+	// 	web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
+	// 	return
+	// }
+	// p := &player.Player{
+	// 	UID:      a.UID,
+	// 	IconID:   1001,
+	// 	NickName: a.UserName,
+	// 	Gold:     10000,
+	// }
+	// if _, err := mysql.GetEngine().Insert(p); err != nil {
+	// 	web.HTTPReturnWrite(w, &web.JSONRet{Code: web.ParamError, Msg: "系统错误"})
+	// 	return
+	// }
 	down, err := getAllGroupBalanceAgent(a.UID)
 	if err != nil || down == nil {
 		logrus.Errorln("LoginHandler getAllGroupBalanceAgent err:", err)

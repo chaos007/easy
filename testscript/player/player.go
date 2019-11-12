@@ -3,8 +3,7 @@ package player
 import (
 	"fmt"
 	"sync"
-)
-import (
+
 	"github.com/chaos007/easy/testscript/types"
 )
 
@@ -52,11 +51,7 @@ func (p *Players) Delete(id int64) {
 type Player struct {
 	ID               int64
 	NickName         string
-	Level            int32
-	CurrentExp       int32
-	Gold             int32
 	CurrentGameState int32
-	SelectHeroID     int32
 	Session          *types.Session
 }
 

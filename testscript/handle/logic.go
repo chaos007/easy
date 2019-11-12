@@ -32,11 +32,3 @@ func GameFrame(content proto.Message, p *player.Player) (ret proto.Message) {
 	// p.Done("GameFrame")
 	return
 }
-
-// EmptyGameFrame EmptyGameFrame
-func EmptyGameFrame(content proto.Message, p *player.Player) (ret proto.Message) {
-	// msg := content.(*pb.EmptyGameFrame)
-	// fmt.Println("------EmptyGameFrame:", msg)
-	// p.Done("EmptyGameFrame")
-	return
-}
