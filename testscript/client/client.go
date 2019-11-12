@@ -9,6 +9,7 @@ import (
 	"github.com/chaos007/easy/testscript/player"
 	"github.com/chaos007/easy/testscript/socket"
 	"github.com/chaos007/easy/testscript/types"
+	
 )
 
 // Client 客户端
