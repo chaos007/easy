@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -74,14 +75,14 @@ func room(i int64) {
 	// <-ch
 }
 
-func otherPlayerJoinRoom(id, idbegin int64) []*client.Client {
+func otherPlayerJoinRoom(id, idbegin int) []*client.Client {
 	result := []*client.Client{}
 	for i := idbegin + 1; i < idbegin+10; i++ {
 		var dieClient = make(chan bool)
 		c := client.NewClient()
 		c.Session.UserID = int64(i)
-		p := player.GetPlayer(int64(i))
-		p.ID = int64(i)
+		p := player.GetPlayer(strconv.Itoa(i))
+		p.ID = strconv.Itoa(i)
 		p.SetSession(c.Session)
 		c.SetAgentHost(testHost)
 		c.Do(dieClient, p)

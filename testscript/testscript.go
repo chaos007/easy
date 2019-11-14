@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strconv"
 
 	"github.com/chaos007/easy/testscript/client"
 	"github.com/chaos007/easy/testscript/player"
@@ -61,8 +62,8 @@ func main() {
 		for i := *idbegin; i < *idbegin+*num; i++ {
 			Client := client.NewClient()
 			Client.Session.UserID = int64(i)
-			p := player.GetPlayer(int64(i))
-			p.ID = int64(i)
+			p := player.GetPlayer(strconv.Itoa(i))
+			p.ID = strconv.Itoa(i)
 			p.SetSession(Client.Session)
 		}
 	}

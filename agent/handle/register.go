@@ -12,7 +12,6 @@ func Init() {
 	mixkcp.RegisterProtocol("pb.TestStruct", controller.TestStruct)
 	mixkcp.RegisterProtocol("pb.UpPing", controller.UpPing)
 
-	mixkcp.RegisterProtocol("pb.PlayerLogin", controller.PlayerLogin)
 	mixkcp.RegisterProtocol("pb.LoginCheckPlayerToAgent", controller.LoginCheckPlayerToAgent)
 	grpc.RegisterProtocol("pb.LoginKickPlayerToAgent", controller.LoginKickPlayerToAgent)
 

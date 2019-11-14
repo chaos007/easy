@@ -3,11 +3,11 @@ package client
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/chaos007/easy/data/pb"
-	"github.com/chaos007/easy/testscript/http"
-	"github.com/chaos007/easy/testscript/socket"
-	"math"
 	"testing"
+
+	"github.com/chaos007/easy/data/pb"
+	"github.com/chaos007/easy/testscript/socket"
+	"github.com/chaos007/easycome/session/web"
 )
 
 func TestLogin(t *testing.T) {
@@ -24,7 +24,6 @@ func TestLogin(t *testing.T) {
 	c2.Player.Wait()
 }
 
-
 func GetClient(str string) *Client {
 	client := NewClient()
 	p := NewClientGetIPPort(str)
@@ -34,10 +33,10 @@ func GetClient(str string) *Client {
 	client.SetAgentHost("ws://" + p.Info.AgentIP + ":" + p.Info.AgentPort + "/websocket")
 	die := make(chan bool)
 	client.Socket.SetServerType(socket.ConnectServerWebSocket)
-	client.Do(die)
+	client.Do(die, NewClient().Player)
 	client.Player.ID = p.UserID
 	client.Player.SetSession(client.Session)
-	client.Socket.Send(&pb.PlayerLogin{
+	client.Socket.Send(&pb.PlayerLoginToUnique{
 		UserID: p.UserID,
 		Cookie: p.Cookie,
 	})
@@ -52,15 +51,16 @@ func NewClientGetIPPort(str string) *pb.WebDownRegister {
 	j, _ := json.Marshal(p)
 	m := map[string][]string{
 		"data": []string{string(j)},
-		"syn":  []string{http.Getmd5(string(j))},
+		"syn":  []string{web.Getmd5(string(j), web.Key)},
 	}
-	res, err := http.Post("http://192.168.0.104:8100/register", m)
+
+	res, err := web.HTTPPost("http://192.168.10.89:8100/register", m)
 	if err != nil {
 		fmt.Println("-----------:", err)
 		return nil
 	}
 	fmt.Println("TestLogin:", res)
-	resJ := &http.JSONRet{}
+	resJ := &web.JSONRet{}
 	json.Unmarshal([]byte(res), resJ)
 
 	b, _ := json.Marshal(resJ.Data)
@@ -80,15 +80,15 @@ func GetIPPort() *pb.WebDownGetServerInfo {
 	j, _ := json.Marshal(p)
 	m := map[string][]string{
 		"data": []string{string(j)},
-		"syn":  []string{http.Getmd5(string(j))},
+		"syn":  []string{web.Getmd5(string(j))},
 	}
-	res, err := http.Post("http://192.168.0.104:8100/login", m)
+	res, err := web.HTTPPost("http://192.168.0.104:8100/login", m)
 	if err != nil {
 		fmt.Println("-----------:", err)
 		return nil
 	}
 	fmt.Println("TestLogin:", res)
-	resJ := &http.JSONRet{}
+	resJ := &web.JSONRet{}
 	json.Unmarshal([]byte(res), resJ)
 
 	b, _ := json.Marshal(resJ.Data)

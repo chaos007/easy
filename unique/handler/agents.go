@@ -77,12 +77,12 @@ func Init() {
 	if res != true {
 		log.Debugln("GetServiceDir no true")
 	}
+	log.Debugln("---------------------:", len(agents))
 	for _, item := range agents {
-		// groupName := filepath.Base(filepath.Dir(filepath.Dir(item.GetKey())))
 		idcount++
 
 		mixkcpListen := config.GetServerProxyListen(item.GetKey(), enum.ServerTypeAgent)
-		log.Debugln("mixkcpListen:", mixkcpListen)
+		log.Debugln("newAgentServer mixkcpListen:", mixkcpListen)
 		list.addAgent(&AgentInfo{idcount, item.GetKey(), mixkcpListen})
 
 	}
@@ -94,8 +94,10 @@ func Init() {
 func PutServiceHandle(etcdPath string, addr string) {
 	log.Debugln("PutServiceHandle", etcdPath)
 
-	// groupName := filepath.Base(filepath.Dir(filepath.Dir(etcdPath)))
 	mixkcpListen := config.GetServerProxyListen(filepath.Base(etcdPath), enum.ServerTypeAgent)
+	if mixkcpListen == "" {
+		return
+	}
 	log.Debugln("PutServiceHandle mixkcpListen:", mixkcpListen)
 	server := &AgentInfo{
 		AddrIP: mixkcpListen,
@@ -106,6 +108,7 @@ func PutServiceHandle(etcdPath string, addr string) {
 
 	if len(ipList) != 2 {
 		log.Errorln("ip parse error,ip:", server.AddrIP)
+		return
 	}
 	if list == nil {
 		list = newAgentServer()

@@ -9,13 +9,13 @@ import (
 	"github.com/chaos007/easy/testscript/player"
 	"github.com/chaos007/easy/testscript/socket"
 	"github.com/chaos007/easy/testscript/types"
-	
 )
 
 // Client 客户端
 type Client struct {
 	Session *types.Session
 	Socket  *socket.Socket
+	Player  *player.Player
 }
 
 // LogFile LogFile
@@ -57,6 +57,7 @@ func NewClient() *Client {
 	return &Client{
 		Session: types.NewSession(),
 		Socket:  socket.NewSocket(),
+		Player:  player.NewPlayer(),
 	}
 }
 

@@ -12,19 +12,19 @@ var PlayersManager = NewPlayers()
 
 // Players player
 type Players struct {
-	data map[int64]*Player
+	data map[string]*Player
 	lock sync.RWMutex
 }
 
 // NewPlayers NewPlayers
 func NewPlayers() *Players {
 	return &Players{
-		data: make(map[int64]*Player),
+		data: make(map[string]*Player),
 	}
 }
 
 // Get Get
-func (p *Players) Get(id int64) *Player {
+func (p *Players) Get(id string) *Player {
 	p.lock.Lock()
 	defer p.lock.Unlock()
 	if a, ok := p.data[id]; ok {
@@ -41,7 +41,7 @@ func (p *Players) Add(a *Player) {
 }
 
 // Delete Delete
-func (p *Players) Delete(id int64) {
+func (p *Players) Delete(id string) {
 	p.lock.Lock()
 	defer p.lock.Unlock()
 	delete(p.data, id)
@@ -49,7 +49,7 @@ func (p *Players) Delete(id int64) {
 
 // Player Player
 type Player struct {
-	ID               int64
+	ID               string
 	NickName         string
 	CurrentGameState int32
 	Session          *types.Session
@@ -74,7 +74,7 @@ func (p *Player) Wait() interface{} {
 }
 
 // GetPlayer GetPlayer
-func GetPlayer(userID int64) *Player {
+func GetPlayer(userID string) *Player {
 	if p := PlayersManager.Get(userID); p != nil {
 		return p
 	}

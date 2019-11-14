@@ -7,7 +7,7 @@ import (
 
 var l = &ListVerifyNumber{
 	lock: new(sync.RWMutex),
-	M:    map[string]*PhoneWithVerify{},
+	M:    map[string]*Verify{},
 }
 
 // GetVerifyMap 获得验证表
@@ -18,22 +18,22 @@ func GetVerifyMap() *ListVerifyNumber {
 // ListVerifyNumber 验证码表
 type ListVerifyNumber struct {
 	lock *sync.RWMutex
-	M    map[string]*PhoneWithVerify
+	M    map[string]*Verify
 }
 
 // Add 添加验证码表
-func (l *ListVerifyNumber) Add(phone, number string) {
+func (l *ListVerifyNumber) Add(check, number string) {
 	l.lock.Lock()
 	defer l.lock.Unlock()
 	l.clean()
-	n, ok := l.M[phone]
+	n, ok := l.M[check]
 	if !ok {
-		p := &PhoneWithVerify{
-			Phone:  phone,
+		p := &Verify{
+			Check:  check,
 			Number: number,
 			Unix:   time.Now().Add(5 * time.Minute).Unix(),
 		}
-		l.M[phone] = p
+		l.M[check] = p
 		return
 	}
 	n.Number = number
@@ -41,11 +41,11 @@ func (l *ListVerifyNumber) Add(phone, number string) {
 }
 
 // Check 检查验证码表
-func (l *ListVerifyNumber) Check(phone, number string) bool {
+func (l *ListVerifyNumber) Check(check, number string) bool {
 	l.lock.Lock()
 	defer l.lock.Unlock()
 	l.clean()
-	if n, ok := l.M[phone]; !ok {
+	if n, ok := l.M[check]; !ok {
 		return false
 	} else if number != n.Number {
 		return false
@@ -58,14 +58,14 @@ func (l *ListVerifyNumber) Check(phone, number string) bool {
 func (l *ListVerifyNumber) clean() {
 	for _, item := range l.M {
 		if time.Now().Unix() > item.Unix {
-			delete(l.M, item.Phone)
+			delete(l.M, item.Check)
 		}
 	}
 }
 
-// PhoneWithVerify 手机号带验证表
-type PhoneWithVerify struct {
-	Phone  string
+// Verify 验证表
+type Verify struct {
+	Check  string
 	Number string
 	Unix   int64
 }

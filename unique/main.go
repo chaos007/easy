@@ -120,7 +120,6 @@ func main() {
 
 			tabelInit()
 
-			http.HandleFunc("/login", handler.LoginHandler)
 			http.HandleFunc("/register", handler.RegisterHandler)
 			http.ListenAndServe(centerConfig.Unique.WebListen, nil)
 			return nil

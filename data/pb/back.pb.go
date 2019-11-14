@@ -8,7 +8,6 @@ Package pb is a generated protocol buffer package.
 It is generated from these files:
 	back.proto
 	core.proto
-	grpc.proto
 
 It has these top-level messages:
 	BackendLogin
@@ -26,15 +25,13 @@ It has these top-level messages:
 	UpGetConfigToCenter
 	SyncConfigDataToAll
 	LoginKickPlayerToAgent
-	AgentCheckUserToLogin
+	PlayerLoginToUnique
 	LoginCheckPlayerToAgent
-	PlayerLogin
 	PlayerLoginToGame
 	DownPlayerLogin
 	WebUpRegisterPassword
 	WebDownRegisterPassword
 	TestStruct
-	Frame
 */
 package pb
 

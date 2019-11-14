@@ -19,15 +19,13 @@ class MessageData{
 	public UpGetConfigToCenter :number = 13;
 	public SyncConfigDataToAll :number = 14;
 	public LoginKickPlayerToAgent :number = 15;
-	public AgentCheckUserToLogin :number = 16;
+	public PlayerLoginToUnique :number = 16;
 	public LoginCheckPlayerToAgent :number = 17;
-	public PlayerLogin :number = 18;
-	public PlayerLoginToGame :number = 19;
-	public DownPlayerLogin :number = 20;
-	public WebUpRegisterPassword :number = 21;
-	public WebDownRegisterPassword :number = 22;
-	public TestStruct :number = 23;
-	public Frame :number = 24;
+	public PlayerLoginToGame :number = 18;
+	public DownPlayerLogin :number = 19;
+	public WebUpRegisterPassword :number = 20;
+	public WebDownRegisterPassword :number = 21;
+	public TestStruct :number = 22;
 	
     public init(){
         this.Map[this.BackendLogin] = pb.BackendLogin;
@@ -45,15 +43,13 @@ class MessageData{
 	    this.Map[this.UpGetConfigToCenter] = pb.UpGetConfigToCenter;
 	    this.Map[this.SyncConfigDataToAll] = pb.SyncConfigDataToAll;
 	    this.Map[this.LoginKickPlayerToAgent] = pb.LoginKickPlayerToAgent;
-	    this.Map[this.AgentCheckUserToLogin] = pb.AgentCheckUserToLogin;
+	    this.Map[this.PlayerLoginToUnique] = pb.PlayerLoginToUnique;
 	    this.Map[this.LoginCheckPlayerToAgent] = pb.LoginCheckPlayerToAgent;
-	    this.Map[this.PlayerLogin] = pb.PlayerLogin;
 	    this.Map[this.PlayerLoginToGame] = pb.PlayerLoginToGame;
 	    this.Map[this.DownPlayerLogin] = pb.DownPlayerLogin;
 	    this.Map[this.WebUpRegisterPassword] = pb.WebUpRegisterPassword;
 	    this.Map[this.WebDownRegisterPassword] = pb.WebDownRegisterPassword;
 	    this.Map[this.TestStruct] = pb.TestStruct;
-	    this.Map[this.Frame] = pb.Frame;
 	    
 
         this.IDToStringMap[this.BackendLogin] = "BackendLogin";
@@ -71,15 +67,13 @@ class MessageData{
 	    this.IDToStringMap[this.UpGetConfigToCenter] = "UpGetConfigToCenter";
 	    this.IDToStringMap[this.SyncConfigDataToAll] = "SyncConfigDataToAll";
 	    this.IDToStringMap[this.LoginKickPlayerToAgent] = "LoginKickPlayerToAgent";
-	    this.IDToStringMap[this.AgentCheckUserToLogin] = "AgentCheckUserToLogin";
+	    this.IDToStringMap[this.PlayerLoginToUnique] = "PlayerLoginToUnique";
 	    this.IDToStringMap[this.LoginCheckPlayerToAgent] = "LoginCheckPlayerToAgent";
-	    this.IDToStringMap[this.PlayerLogin] = "PlayerLogin";
 	    this.IDToStringMap[this.PlayerLoginToGame] = "PlayerLoginToGame";
 	    this.IDToStringMap[this.DownPlayerLogin] = "DownPlayerLogin";
 	    this.IDToStringMap[this.WebUpRegisterPassword] = "WebUpRegisterPassword";
 	    this.IDToStringMap[this.WebDownRegisterPassword] = "WebDownRegisterPassword";
 	    this.IDToStringMap[this.TestStruct] = "TestStruct";
-	    this.IDToStringMap[this.Frame] = "Frame";
 	    
     }
 }

@@ -25,8 +25,9 @@ var (
 
 // type
 var (
-	ConnectServerKCP = "kcp"
-	ConnectServerTCP = "tcp"
+	ConnectServerKCP       = "kcp"
+	ConnectServerTCP       = "tcp"
+	ConnectServerWebSocket = "websocket"
 )
 
 // Socket Socket

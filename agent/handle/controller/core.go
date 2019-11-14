@@ -105,18 +105,3 @@ func LoginCheckPlayerToAgent(sess *mixkcp.Session, data proto.Message) (proto.Me
 
 	return nil, nil
 }
-
-// PlayerLogin 玩家请求登陆
-func PlayerLogin(sess *mixkcp.Session, data proto.Message) (proto.Message, error) {
-	source, ok := data.(*pb.PlayerLogin)
-	if !ok {
-		return nil, nil
-	}
-
-	sess.SendToServer(enum.ServerTypeUnique, &pb.AgentCheckUserToLogin{
-		UserID: source.UserID,
-		Cookie: source.Cookie,
-	})
-
-	return nil, nil
-}

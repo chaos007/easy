@@ -85,8 +85,8 @@ message LoginKickPlayerToAgent {
 	string UserID = 1;
 }
 
-// AgentCheckUserToLogin  向登陆服请求玩家数据正确
-message AgentCheckUserToLogin {
+// PlayerLoginToUnique  向登陆服请求玩家数据
+message PlayerLoginToUnique {
 	string UserID = 1;
 	string Cookie = 2;
 }
@@ -95,12 +95,6 @@ message AgentCheckUserToLogin {
 message LoginCheckPlayerToAgent{
 	string UserID = 1;
 	bool IsLegal = 2;
-}
-
-// PlayerLogin 玩家请求登陆
-message PlayerLogin {
-	string UserID = 1;
-	string Cookie = 2;
 }
 
 // PlayerLoginToGame 玩家向游戏服请求数据
