@@ -3,7 +3,7 @@ module github.com/chaos007/easy
 go 1.13
 
 require (
-	github.com/chaos007/easycome v0.0.0-20191114065607-509a03b81d7e
+	github.com/chaos007/easycome v0.0.0-20191114074058-4f3695ab9c8a
 	github.com/coreos/etcd v3.3.17+incompatible // indirect
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gogo/protobuf v1.3.1 // indirect
@@ -20,7 +20,7 @@ require (
 	go.etcd.io/etcd v3.3.17+incompatible
 	go.uber.org/multierr v1.4.0 // indirect
 	go.uber.org/zap v1.12.0 // indirect
-	golang.org/x/net v0.0.0-20191105084925-a882066a44e0 // indirect
+	golang.org/x/net v0.0.0-20191105084925-a882066a44e0
 	golang.org/x/sys v0.0.0-20191105231009-c1f44814a5cd // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	golang.org/x/tools v0.0.0-20191107010934-f79515f33823 // indirect

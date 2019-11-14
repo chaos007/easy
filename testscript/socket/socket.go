@@ -7,12 +7,14 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"strings"
 	"sync"
 
 	"github.com/chaos007/easy/testscript/handle"
 	"github.com/chaos007/easy/testscript/player"
 	"github.com/chaos007/easy/testscript/types"
 	"github.com/chaos007/easycome/msgmeta"
+	"golang.org/x/net/websocket"
 
 	"github.com/golang/protobuf/proto"
 	kcp "github.com/xtaci/kcp-go"
@@ -182,6 +184,12 @@ func (s *Socket) Dail() (err error) {
 		if err != nil {
 			fmt.Printf("#connect%s -> %s", s.host, err.Error())
 			return
+		}
+	} else if s.connect == ConnectServerWebSocket {
+		s.conn, err = websocket.Dial(s.host, "", strings.TrimSuffix(s.host, "/websocket"))
+		if err != nil {
+			fmt.Printf("#connect%s -> %s", s.host, err.Error())
+			return err
 		}
 	}
 	return

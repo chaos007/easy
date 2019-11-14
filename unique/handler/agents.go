@@ -77,12 +77,11 @@ func Init() {
 	if res != true {
 		log.Debugln("GetServiceDir no true")
 	}
-	log.Debugln("---------------------:", len(agents))
 	for _, item := range agents {
 		idcount++
 
 		mixkcpListen := config.GetServerProxyListen(item.GetKey(), enum.ServerTypeAgent)
-		log.Debugln("newAgentServer mixkcpListen:", mixkcpListen)
+		log.Debug("newAgentServer addGameServer ganode", mixkcpListen)
 		list.addAgent(&AgentInfo{idcount, item.GetKey(), mixkcpListen})
 
 	}
@@ -96,8 +95,10 @@ func PutServiceHandle(etcdPath string, addr string) {
 
 	mixkcpListen := config.GetServerProxyListen(filepath.Base(etcdPath), enum.ServerTypeAgent)
 	if mixkcpListen == "" {
+		log.Debugln("PutServiceHandle get mixkcpListen space...")
 		return
 	}
+
 	log.Debugln("PutServiceHandle mixkcpListen:", mixkcpListen)
 	server := &AgentInfo{
 		AddrIP: mixkcpListen,
@@ -115,7 +116,9 @@ func PutServiceHandle(etcdPath string, addr string) {
 	}
 	idcount++
 	server.ID = idcount
-	list.addAgent(server)
+	if !list.addAgent(server) {
+		return
+	}
 
 	gaNode := hashs.NewNode(idcount, server.AddrIP, filepath.Base(etcdPath), 1)
 	log.Debug("addGameServer ganode", gaNode)

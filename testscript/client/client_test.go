@@ -33,7 +33,7 @@ func GetClient(str string) *Client {
 	client.SetAgentHost("ws://" + p.Info.AgentIP + ":" + p.Info.AgentPort + "/websocket")
 	die := make(chan bool)
 	client.Socket.SetServerType(socket.ConnectServerWebSocket)
-	client.Do(die, NewClient().Player)
+	client.Do(die, client.Player)
 	client.Player.ID = p.UserID
 	client.Player.SetSession(client.Session)
 	client.Socket.Send(&pb.PlayerLoginToUnique{
@@ -72,29 +72,29 @@ func NewClientGetIPPort(str string) *pb.WebDownRegister {
 }
 
 // GetIPPort ip
-func GetIPPort() *pb.WebDownGetServerInfo {
-	p := &pb.WebUpGetServerInfo{
-		UserName: "12345678",
-		Password: "112244",
-	}
-	j, _ := json.Marshal(p)
-	m := map[string][]string{
-		"data": []string{string(j)},
-		"syn":  []string{web.Getmd5(string(j))},
-	}
-	res, err := web.HTTPPost("http://192.168.0.104:8100/login", m)
-	if err != nil {
-		fmt.Println("-----------:", err)
-		return nil
-	}
-	fmt.Println("TestLogin:", res)
-	resJ := &web.JSONRet{}
-	json.Unmarshal([]byte(res), resJ)
+// func GetIPPort() *pb.WebDownGetServerInfo {
+// 	p := &pb.WebUpGetServerInfo{
+// 		UserName: "12345678",
+// 		Password: "112244",
+// 	}
+// 	j, _ := json.Marshal(p)
+// 	m := map[string][]string{
+// 		"data": []string{string(j)},
+// 		"syn":  []string{web.Getmd5(string(j))},
+// 	}
+// 	res, err := web.HTTPPost("http://192.168.0.104:8100/login", m)
+// 	if err != nil {
+// 		fmt.Println("-----------:", err)
+// 		return nil
+// 	}
+// 	fmt.Println("TestLogin:", res)
+// 	resJ := &web.JSONRet{}
+// 	json.Unmarshal([]byte(res), resJ)
 
-	b, _ := json.Marshal(resJ.Data)
-	wb := &pb.WebDownGetServerInfo{}
-	json.Unmarshal(b, wb)
-	fmt.Println("TestLogin:", wb.Info.AgentIP)
-	fmt.Println("TestLogin:", wb.Info.AgentPort)
-	return wb
-}
+// 	b, _ := json.Marshal(resJ.Data)
+// 	wb := &pb.WebDownGetServerInfo{}
+// 	json.Unmarshal(b, wb)
+// 	fmt.Println("TestLogin:", wb.Info.AgentIP)
+// 	fmt.Println("TestLogin:", wb.Info.AgentPort)
+// 	return wb
+// }
