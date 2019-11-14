@@ -3,7 +3,7 @@ module github.com/chaos007/easy
 go 1.13
 
 require (
-	github.com/chaos007/easycome v0.0.0-20191114074058-4f3695ab9c8a
+	github.com/chaos007/easycome v0.0.0-20191114084848-73332c7fb28c
 	github.com/coreos/etcd v3.3.17+incompatible // indirect
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gogo/protobuf v1.3.1 // indirect

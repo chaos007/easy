@@ -35,4 +35,5 @@ var handler = map[string]func(proto.Message, *player.Player) proto.Message{
 	"pb.DownPing":         DownPing,
 	"pb.DownPlayerAction": DownPlayerAction,
 	"pb.GameFrame":        GameFrame,
+	"pb.DownPlayerLogin":  DownPlayerLogin,
 }

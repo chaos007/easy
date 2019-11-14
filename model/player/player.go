@@ -2,7 +2,6 @@ package player
 
 import (
 	"github.com/chaos007/easy/model/configdata"
-	"github.com/chaos007/easycome/mysql"
 )
 
 // Player 玩家
@@ -22,14 +21,7 @@ type Player struct {
 // NewPlayer NewPlayer
 func NewPlayer(playerID string) (*Player, error) {
 	p := new(Player)
-	if ok, err := mysql.GetEngine().Where("uid = ?", playerID).Get(p); err != nil {
-		return nil, err
-	} else if !ok {
-		p.UID = playerID
-		if _, err := mysql.GetEngine().Insert(p); err != nil {
-			return nil, err
-		}
-	}
+	p.UID = playerID
 	return p, p.Init()
 }
 

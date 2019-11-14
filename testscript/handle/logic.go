@@ -32,3 +32,10 @@ func GameFrame(content proto.Message, p *player.Player) (ret proto.Message) {
 	// p.Done("GameFrame")
 	return
 }
+
+// DownPlayerLogin DownPlayerLogin
+func DownPlayerLogin(content proto.Message, p *player.Player) (ret proto.Message) {
+	msg := content.(*pb.DownPlayerLogin)
+	fmt.Println("------DownPlayerLogin:", msg)
+	return
+}

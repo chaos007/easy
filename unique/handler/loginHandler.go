@@ -129,6 +129,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	password := utils.GetRandomString(6)
 	a := &account.Account{
 		Password:    password,
+		UID:         utils.GetRandomString(6),
 		SignUpTime:  time.Now().Unix(),
 		Cookie:      web.Getmd5(password + web.Key),
 		UserName:    utils.GetRandomString(8),
