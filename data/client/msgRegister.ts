@@ -7,32 +7,37 @@ class MessageData{
     public BackendLogin :number = 1;
 	public UpGetBackendLoginInfo :number = 2;
 	public DownGetBackendLoginInfo :number = 3;
-	public TestToAgent :number = 4;
-	public TestToGame :number = 5;
-	public UpPing :number = 6;
-	public DownPing :number = 7;
-	public WebUpRegister :number = 8;
-	public WebDownRegister :number = 9;
-	public WebUpGetServerInfo :number = 10;
-	public WebDownGetServerInfo :number = 11;
-	public ServerInfo :number = 12;
-	public UpGetConfigToCenter :number = 13;
-	public SyncConfigDataToAll :number = 14;
-	public LoginKickPlayerToAgent :number = 15;
-	public PlayerLoginToUnique :number = 16;
-	public LoginCheckPlayerToAgent :number = 17;
-	public PlayerLoginToGame :number = 18;
-	public DownPlayerLogin :number = 19;
-	public WebUpRegisterPassword :number = 20;
-	public WebDownRegisterPassword :number = 21;
-	public TestStruct :number = 22;
+	public UpPing :number = 4;
+	public DownPing :number = 5;
+	public WebUpRegister :number = 6;
+	public WebDownRegister :number = 7;
+	public WebUpGetServerInfo :number = 8;
+	public WebDownGetServerInfo :number = 9;
+	public ServerInfo :number = 10;
+	public UpGetConfigToCenter :number = 11;
+	public SyncConfigDataToAll :number = 12;
+	public LoginKickPlayerToAgent :number = 13;
+	public PlayerLoginToUnique :number = 14;
+	public LoginCheckPlayerToAgent :number = 15;
+	public PlayerLoginToGame :number = 16;
+	public DownPlayerLogin :number = 17;
+	public WebUpRegisterPassword :number = 18;
+	public WebDownRegisterPassword :number = 19;
+	public TestStruct :number = 20;
+	public TestToAgent :number = 21;
+	public TestToGame :number = 22;
+	public UpJoinRoomToUnique :number = 23;
+	public DownJoinRoomToClient :number = 24;
+	public NoticeJoinRoomToClient :number = 25;
+	public UpSendMessageToGame :number = 26;
+	public DownSendMessageToClient :number = 27;
+	public NoticeSendMessageToClient :number = 28;
+	public JoinRoomServerIDToAgent :number = 29;
 	
     public init(){
         this.Map[this.BackendLogin] = pb.BackendLogin;
 	    this.Map[this.UpGetBackendLoginInfo] = pb.UpGetBackendLoginInfo;
 	    this.Map[this.DownGetBackendLoginInfo] = pb.DownGetBackendLoginInfo;
-	    this.Map[this.TestToAgent] = pb.TestToAgent;
-	    this.Map[this.TestToGame] = pb.TestToGame;
 	    this.Map[this.UpPing] = pb.UpPing;
 	    this.Map[this.DownPing] = pb.DownPing;
 	    this.Map[this.WebUpRegister] = pb.WebUpRegister;
@@ -50,13 +55,20 @@ class MessageData{
 	    this.Map[this.WebUpRegisterPassword] = pb.WebUpRegisterPassword;
 	    this.Map[this.WebDownRegisterPassword] = pb.WebDownRegisterPassword;
 	    this.Map[this.TestStruct] = pb.TestStruct;
+	    this.Map[this.TestToAgent] = pb.TestToAgent;
+	    this.Map[this.TestToGame] = pb.TestToGame;
+	    this.Map[this.UpJoinRoomToUnique] = pb.UpJoinRoomToUnique;
+	    this.Map[this.DownJoinRoomToClient] = pb.DownJoinRoomToClient;
+	    this.Map[this.NoticeJoinRoomToClient] = pb.NoticeJoinRoomToClient;
+	    this.Map[this.UpSendMessageToGame] = pb.UpSendMessageToGame;
+	    this.Map[this.DownSendMessageToClient] = pb.DownSendMessageToClient;
+	    this.Map[this.NoticeSendMessageToClient] = pb.NoticeSendMessageToClient;
+	    this.Map[this.JoinRoomServerIDToAgent] = pb.JoinRoomServerIDToAgent;
 	    
 
         this.IDToStringMap[this.BackendLogin] = "BackendLogin";
 	    this.IDToStringMap[this.UpGetBackendLoginInfo] = "UpGetBackendLoginInfo";
 	    this.IDToStringMap[this.DownGetBackendLoginInfo] = "DownGetBackendLoginInfo";
-	    this.IDToStringMap[this.TestToAgent] = "TestToAgent";
-	    this.IDToStringMap[this.TestToGame] = "TestToGame";
 	    this.IDToStringMap[this.UpPing] = "UpPing";
 	    this.IDToStringMap[this.DownPing] = "DownPing";
 	    this.IDToStringMap[this.WebUpRegister] = "WebUpRegister";
@@ -74,6 +86,15 @@ class MessageData{
 	    this.IDToStringMap[this.WebUpRegisterPassword] = "WebUpRegisterPassword";
 	    this.IDToStringMap[this.WebDownRegisterPassword] = "WebDownRegisterPassword";
 	    this.IDToStringMap[this.TestStruct] = "TestStruct";
+	    this.IDToStringMap[this.TestToAgent] = "TestToAgent";
+	    this.IDToStringMap[this.TestToGame] = "TestToGame";
+	    this.IDToStringMap[this.UpJoinRoomToUnique] = "UpJoinRoomToUnique";
+	    this.IDToStringMap[this.DownJoinRoomToClient] = "DownJoinRoomToClient";
+	    this.IDToStringMap[this.NoticeJoinRoomToClient] = "NoticeJoinRoomToClient";
+	    this.IDToStringMap[this.UpSendMessageToGame] = "UpSendMessageToGame";
+	    this.IDToStringMap[this.DownSendMessageToClient] = "DownSendMessageToClient";
+	    this.IDToStringMap[this.NoticeSendMessageToClient] = "NoticeSendMessageToClient";
+	    this.IDToStringMap[this.JoinRoomServerIDToAgent] = "JoinRoomServerIDToAgent";
 	    
     }
 }

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package pb;
+
+
+// TestToAgent TestToAgent
+message TestToAgent{
+	string FieldA = 1;
+}
+
+// TestToGame TestToGame
+message TestToGame{
+	string FieldA = 1;
+	string FieldB = 2;
+}
+
+// UpJoinRoomToUnique 申请加入房间
+message UpJoinRoomToUnique{
+
+}
+
+// DownJoinRoomToClient 加入客户端结果
+message DownJoinRoomToClient{
+	bool IsSucceed = 1;
+}
+
+// NoticeJoinRoomToClient 通知加入房间
+message NoticeJoinRoomToClient{
+	string OtherUID = 2;//另外一个人的id
+}
+
+// UpSendMessageToGame 上发房间说话
+message UpSendMessageToGame {
+
+}
+
+// DownSendMessageToClient 房间说话结果
+message DownSendMessageToClient {
+	bool IsSucceed = 1;
+}
+
+// NoticeSendMessage 通知房间说话信息
+message NoticeSendMessageToClient {
+
+}
+
+// JoinRoomServerIDToAgent 通知agent需要连接的服务器id
+message JoinRoomServerIDToAgent{
+	string ServerID = 1;
+}

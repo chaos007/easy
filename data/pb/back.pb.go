@@ -8,13 +8,12 @@ Package pb is a generated protocol buffer package.
 It is generated from these files:
 	back.proto
 	core.proto
+	test.proto
 
 It has these top-level messages:
 	BackendLogin
 	UpGetBackendLoginInfo
 	DownGetBackendLoginInfo
-	TestToAgent
-	TestToGame
 	UpPing
 	DownPing
 	WebUpRegister
@@ -32,6 +31,15 @@ It has these top-level messages:
 	WebUpRegisterPassword
 	WebDownRegisterPassword
 	TestStruct
+	TestToAgent
+	TestToGame
+	UpJoinRoomToUnique
+	DownJoinRoomToClient
+	NoticeJoinRoomToClient
+	UpSendMessageToGame
+	DownSendMessageToClient
+	NoticeSendMessageToClient
+	JoinRoomServerIDToAgent
 */
 package pb
 

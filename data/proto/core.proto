@@ -8,18 +8,6 @@ package pb;
 //syn里面是md5(data,Key)
 //key值 = a40ef1cbe609853bc5f1d6c83caaca75
 
-
-// TestToAgent TestToAgent
-message TestToAgent{
-	string FieldA = 1;
-}
-
-// TestToGame TestToGame
-message TestToGame{
-	string FieldA = 1;
-	string FieldB = 2;
-}
-
 // UpPing UpPing
 message UpPing{
 	

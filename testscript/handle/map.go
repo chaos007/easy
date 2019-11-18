@@ -32,8 +32,9 @@ func Handler(msgID int32, data []byte, p *player.Player) (ret proto.Message) {
 
 //大厅网关协议
 var handler = map[string]func(proto.Message, *player.Player) proto.Message{
-	"pb.DownPing":         DownPing,
-	"pb.DownPlayerAction": DownPlayerAction,
-	"pb.GameFrame":        GameFrame,
-	"pb.DownPlayerLogin":  DownPlayerLogin,
+	"pb.DownPing":             DownPing,
+	"pb.DownPlayerAction":     DownPlayerAction,
+	"pb.GameFrame":            GameFrame,
+	"pb.DownPlayerLogin":      DownPlayerLogin,
+	"pb.DownJoinRoomToClient": DownJoinRoomToClient,
 }

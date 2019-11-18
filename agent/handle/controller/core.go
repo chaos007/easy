@@ -2,7 +2,6 @@ package controller
 
 import (
 	"github.com/chaos007/easy/data/pb"
-	"github.com/chaos007/easycome/enum"
 	"github.com/chaos007/easycome/session/grpc"
 	"github.com/chaos007/easycome/session/mixkcp"
 
@@ -89,7 +88,7 @@ func LoginCheckPlayerToAgent(sess *mixkcp.Session, data proto.Message) (proto.Me
 	logrus.Debugln("source:", source.UserID)
 	logrus.Debugln("source:", source.IsLegal)
 
-	if !source.IsLegal {
+	if !source.IsLegal { //踢掉原来的链接
 		s := mixkcp.GetUserSession(source.UserID)
 		if s != nil {
 			s.SendToClientUseProto(&pb.DownPlayerLogin{
@@ -97,10 +96,15 @@ func LoginCheckPlayerToAgent(sess *mixkcp.Session, data proto.Message) (proto.Me
 			})
 			s.SessionClose()
 		}
-	} else { //登陆
-		sess.SendToServer(enum.ServerTypeGame, &pb.PlayerLoginToGame{
-			UserID: source.UserID,
+	} else { //登陆，当前所处理的为原来mixkcp的session
+		sess.SessionLogin(source.UserID)
+		sess.SendToClientUseProto(&pb.DownPlayerLogin{
+			IsSucceed: true,
+			UserID:    source.UserID,
 		})
+		// sess.SendToServer(enum.ServerTypeGame, &pb.PlayerLoginToGame{
+		// 	UserID: source.UserID,
+		// })
 	}
 
 	return nil, nil

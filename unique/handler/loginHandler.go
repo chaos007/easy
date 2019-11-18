@@ -8,7 +8,10 @@ import (
 
 	"github.com/chaos007/easy/data/pb"
 	"github.com/chaos007/easy/model/account"
+	"github.com/chaos007/easy/model/match"
 	"github.com/chaos007/easy/model/verify"
+	"github.com/chaos007/easycome/enum"
+	"github.com/chaos007/easycome/etcdservices"
 	"github.com/chaos007/easycome/session/grpc"
 	"github.com/chaos007/easycome/session/web"
 	"github.com/chaos007/easycome/utils"
@@ -256,6 +259,27 @@ func PlayerLoginToUnique(sess *grpc.Session, data proto.Message) (proto.Message,
 		UserID: source.UserID,
 	}
 	result.IsLegal = verify.GetVerifyMap().Check(source.UserID, source.Cookie)
+
+	return result, nil
+}
+
+// UpJoinRoomToUnique 玩家通过agent登录
+func UpJoinRoomToUnique(sess *grpc.Session, data proto.Message) (proto.Message, error) {
+	_, ok := data.(*pb.UpJoinRoomToUnique)
+	if !ok {
+		return nil, nil
+	}
+
+	result := &pb.DownJoinRoomToClient{
+		IsSucceed: true,
+	}
+	list := match.JoinRoom(sess.UserID)
+	if list != nil {
+		_, id := etcdservices.GetService2(enum.ServerTypeGame)
+		logrus.Debugln("-------------:", id)
+		// sess.SendToStreamWithServerKey(sess.)
+		return result, nil
+	}
 
 	return result, nil
 }

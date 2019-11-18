@@ -24,6 +24,24 @@ func TestLogin(t *testing.T) {
 	c2.Player.Wait()
 }
 
+func TestJoinRoom(t *testing.T) {
+	c1 := GetClient("")
+	if c1 == nil {
+		return
+	}
+	c2 := GetClient("")
+	if c2 == nil {
+		return
+	}
+
+	fmt.Println("---------------------------")
+	c1.Socket.Send(&pb.UpJoinRoomToUnique{})
+	c2.Socket.Send(&pb.UpJoinRoomToUnique{})
+
+	c1.Player.Wait()
+	c2.Player.Wait()
+}
+
 func GetClient(str string) *Client {
 	client := NewClient()
 	p := NewClientGetIPPort(str)
@@ -56,18 +74,16 @@ func NewClientGetIPPort(str string) *pb.WebDownRegister {
 
 	res, err := web.HTTPPost("http://192.168.10.89:8100/register", m)
 	if err != nil {
-		fmt.Println("-----------:", err)
 		return nil
 	}
-	fmt.Println("TestLogin:", res)
 	resJ := &web.JSONRet{}
 	json.Unmarshal([]byte(res), resJ)
 
 	b, _ := json.Marshal(resJ.Data)
 	wb := &pb.WebDownRegister{}
 	json.Unmarshal(b, wb)
-	fmt.Println("TestLogin:", wb.Info.AgentIP)
-	fmt.Println("TestLogin:", wb.Info.AgentPort)
+	// fmt.Println("TestLogin:", wb.Info.AgentIP)
+	// fmt.Println("TestLogin:", wb.Info.AgentPort)
 	return wb
 }
 

@@ -39,3 +39,10 @@ func DownPlayerLogin(content proto.Message, p *player.Player) (ret proto.Message
 	fmt.Println("------DownPlayerLogin:", msg)
 	return
 }
+
+// DownJoinRoomToClient DownJoinRoomToClient
+func DownJoinRoomToClient(content proto.Message, p *player.Player) (ret proto.Message) {
+	msg := content.(*pb.DownJoinRoomToClient)
+	fmt.Println("------DownJoinRoomToClient:", msg)
+	return
+}

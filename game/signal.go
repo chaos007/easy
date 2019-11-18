@@ -29,7 +29,7 @@ func sigHandler() {
 		select {
 		case msg := <-ch:
 			switch msg {
-			case syscall.SIGTERM: // å…³é—­agent
+			case syscall.SIGTERM: //
 				close(die)
 				mixkcp.CloseAllSession() //关闭当前所有的连接
 				log.Info("sigterm received")
